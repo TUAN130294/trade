@@ -82,3 +82,9 @@ repomix-output.xml
 # Codex
 .codex-review/
 .codex-tmp-test/
+
+# Development plans & reports (internal)
+plans/
+
+# Sync package
+sync_package/
