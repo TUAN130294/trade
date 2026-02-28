@@ -1,10 +1,24 @@
-# VN-QUANT Live Monitoring Guide
+# VN-Quant Live Monitoring Guide
 
 **Real-time Agent Signals & Trade Monitoring**
 
 ---
 
-## 1. Watch Agent Discussions in Real-Time
+## Quick Start (30 seconds)
+
+### Watch Live Trading System
+```bash
+docker-compose logs -f autonomous
+```
+
+**What you'll see:**
+- 📰 News alerts being detected
+- 🎯 Model opportunities found
+- 🗣️ Agent discussions happening
+- 📊 Trades being executed
+- 📍 Positions being managed
+
+## Watch Agent Discussions in Real-Time
 
 ### Option A: Docker Logs (Recommended)
 

@@ -288,30 +288,99 @@ grep TRADING_MODE .env  # Should show paper
 
 ## Docker Deployment
 
-### Docker Quick Start
+### Overview
 
-**Prerequisites:**
-- Docker Engine 20.10+
-- docker-compose 1.29+
+VN-Quant runs in Docker containers with:
+- **PostgreSQL** for data storage (optional)
+- **Redis** for caching (optional)
+- **Autonomous Trading Service** (main trading system)
+- **Backend API** (REST endpoints)
+- **Model Training Service** (weekly ML training)
 
-**One-command deployment:**
+### Prerequisites
+
+- **Docker Desktop** (Windows/macOS) or **Docker Engine** (Linux)
+- **Docker Compose** 1.29+
+- **4 GB RAM minimum** (8 GB recommended)
+- **2 GB free disk space** (models + data)
+- **Internet connection** (for data feeds)
+
+### Installation
+
+**Windows/macOS:**
 ```bash
-# Navigate to project
+# Download Docker Desktop from https://www.docker.com/products/docker-desktop
+# Follow installation wizard
+docker --version  # Verify
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+docker --version
+```
+
+### Docker Quick Start (5 Minutes)
+
+**Step 1: Navigate to project**
+```bash
 cd D:\testpapertr  # Windows
 cd ~/testpapertr   # macOS/Linux
+```
 
-# Deploy all services
+**Step 2: Configure environment**
+```bash
+# Copy example configuration
+cp .env.example .env
+
+# Edit .env with your settings
+# Most defaults work fine for testing
+```
+
+**Step 3: Start all services**
+```bash
+# Build and start containers
 docker-compose up -d
 
 # Check status
 docker-compose ps
 
 # Expected output:
-# NAME                STATUS              PORTS
-# vn-quant-api        Up 2 minutes        0.0.0.0:8000->8000/tcp
+# NAME                    STATUS              PORTS
+# vnquant-postgres        Up 30s (healthy)
+# vnquant-redis           Up 30s (healthy)
+# vnquant-autonomous      Up 25s
+# vnquant-api             Up 20s
+# vnquant-trainer         Up 15s (background service)
+```
 
-# View logs
-docker-compose logs -f vn-quant-api
+**Step 4: Verify services**
+```bash
+# Check logs
+docker-compose logs autonomous -f  # View trading logs
+docker-compose logs api -f         # View API logs
+docker-compose logs trainer -f     # View training logs
+
+# Test API
+curl http://localhost:8003/api/status
+
+# Expected: {"status": "ok", "uptime": 123}
+```
+
+**Step 5: Access services**
+```
+Trading Dashboard: http://localhost:8001/autonomous
+API Documentation: http://localhost:8003/docs
+```
+
+**Step 6: Stop services**
+```bash
+# Stop all containers
+docker-compose down
+
+# Stop and remove volumes (WARNING: deletes data!)
+docker-compose down -v
 ```
 
 ### Docker Configuration
@@ -321,11 +390,11 @@ docker-compose logs -f vn-quant-api
 version: '3.8'
 
 services:
-  api:
+  autonomous:
     build: .
     ports:
-      - "8000:8000"          # FastAPI
-      - "8003:8003"          # Backend API (if separate)
+      - "8000:8001"          # Trading UI
+      - "8003:8003"          # REST API
     volumes:
       - ./models:/app/models         # Pre-trained models
       - ./data:/app/data             # Historical data
@@ -337,7 +406,7 @@ services:
       - LOG_LEVEL=INFO
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:8003/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -354,105 +423,340 @@ services:
       - POSTGRES_PASSWORD=secure_password_change_me
     restart: unless-stopped
 
+  # Optional: Redis for caching
+  redis:
+    image: redis:7
+    restart: unless-stopped
+
+  # Optional: Model training service
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.training
+    environment:
+      - TRAINING_SCHEDULE=0 2 * * 0  # 2 AM Sunday
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: unless-stopped
+
 volumes:
   postgres_data:
 ```
 
-### Docker Deployment Steps
+### Environment Variables (.env)
 
-**Step 1: Build image**
+**Essential Settings:**
 ```bash
-# Build from Dockerfile
-docker build -t vn-quant:latest .
+# Trading mode
+TRADING_MODE=paper              # Use "paper" for testing
+ENVIRONMENT=production          # development, staging, production
 
-# Expected output:
-# Successfully tagged vn-quant:latest
+# Database (optional - defaults work)
+POSTGRES_PASSWORD=your_secure_password
+REDIS_PASSWORD=your_redis_password
+
+# API Keys (required for some features)
+GEMINI_API_KEY=sk-...           # Google Gemini for AI analysis
+TELEGRAM_BOT_TOKEN=...          # For alerts (optional)
+
+# Trading parameters
+INITIAL_CAPITAL=100000000       # Starting cash (VND)
+MAX_POSITION_PCT=0.15           # 15% max per stock
+MAX_POSITIONS=10                # Max concurrent positions
+STOP_LOSS_PCT=0.07              # 7% stop loss
+TAKE_PROFIT_PCT=0.15            # 15% profit target
+MAX_DAILY_LOSS_PCT=0.05         # 5% daily loss limit
+
+# Model Training
+TRAINING_SCHEDULE=0 2 * * 0     # 2 AM Sunday
+TIMEZONE=Asia/Ho_Chi_Minh
+ENABLE_NOTIFICATIONS=true       # Email/Slack alerts
+SLACK_WEBHOOK_URL=...           # For notifications
 ```
 
-**Step 2: Run container**
-```bash
-# Run single container
-docker run -d \
-  --name vn-quant \
-  -p 8000:8000 \
-  -v $(pwd)/models:/app/models \
-  -v $(pwd)/data:/app/data \
-  -v $(pwd)/logs:/app/logs \
-  -e TRADING_MODE=paper \
-  vn-quant:latest
+### Service Details
 
-# Or use docker-compose (recommended)
-docker-compose up -d
+#### Autonomous Trading Service
+
+**Container:** `vnquant-autonomous`
+
+**What it does:**
+- Scans markets every 3 minutes
+- Runs 6 agent consensus
+- Places and manages trades
+- Monitors positions
+- Logs all activity
+
+**Monitor:**
+```bash
+# View logs
+docker logs vnquant-autonomous -f --tail=50
+
+# Sample output:
+[09:15:23] 🔭 Scout: Scanning 102 stocks...
+[09:15:45] 📊 Alex: Technical signals for HPG: BUY
+[09:16:00] 🐂 Bull: Growth detected in VCB
+[09:16:15] ⚖️  Chief: Consensus reached - VOTE BUY
+[09:16:20] ✅ Order executed: BUY 1000 shares HPG @ 45,200 VND
 ```
 
-**Step 3: Verify deployment**
+#### Backend API Service
+
+**Container:** `vnquant-api`
+
+**Endpoints:**
 ```bash
-# Check container status
-docker ps | grep vn-quant
+# Trading endpoints
+GET  /api/trades          # Get trade history
+POST /api/trades          # Create new trade
+GET  /api/positions       # Get open positions
+DELETE /api/positions/:id # Close position
 
-# Check logs
-docker logs -f vn-quant_vn-quant-api_1
+# Agent endpoints
+GET /api/agents/status    # Current agent status
+GET /api/agents/signals   # Recent signals
 
-# Test API
-curl http://localhost:8000/api/status
-
-# Access dashboard
-# Open: http://localhost:8000/autonomous
+# Portfolio endpoints
+GET /api/portfolio/summary
+GET /api/portfolio/performance
 ```
 
-**Step 4: Manage container**
-```bash
-# Stop container
-docker-compose stop
-
-# Restart container
-docker-compose restart
-
-# Remove container
-docker-compose down
-
-# View real-time logs
-docker-compose logs -f --tail=100
+**API Documentation:**
+```
+http://localhost:8003/docs
 ```
 
-### Docker Troubleshooting
+#### Model Training Service
 
-**Port already in use:**
+**Container:** `vnquant-trainer`
+
+**What it does:**
+- Trains Stockformer models weekly
+- Validates predictions
+- Deploys new models
+- Sends notifications
+- Logs results
+
+**View training log:**
 ```bash
-# Check what's using port 8000
-lsof -i :8000  # macOS/Linux
-netstat -ano | findstr :8000  # Windows
-
-# Use different port in docker-compose.yml
-ports:
-  - "8001:8000"  # External:Internal
+docker logs vnquant-trainer -f
 ```
 
-**Out of memory:**
-```bash
-# Increase Docker memory limit
-# Docker Desktop: Settings → Resources → Memory: 4GB+
+### Volume Mapping
 
-# Or set resource limits in docker-compose
+**Data Persistence:**
+
+| Container Path | Host Path | Purpose |
+|---|---|---|
+| `/app/models` | `./models` | Trained ML models |
+| `/app/data` | `./data` | Historical price data |
+| `/app/logs` | `./logs` | Application logs |
+| `/var/lib/postgresql/data` | `postgres_data` | Database |
+| `/data` | `redis_data` | Redis cache |
+
+**Backup Data:**
+```bash
+# Backup models and data
+zip -r vnquant_backup.zip models/ data/ logs/
+
+# Restore backup
+unzip vnquant_backup.zip
+```
+
+### Port Mapping
+
+| Service | Container Port | Host Port | Purpose |
+|---|---|---|---|
+| API Server | 8003 | 8003 | REST API & Docs |
+| Trading Dashboard | 8000 | 8001 | Web UI |
+| PostgreSQL | 5432 | 5435 | Database |
+| Redis | 6379 | 6380 | Cache |
+
+**Change Ports:**
+
+Edit `docker-compose.yml`:
+```yaml
 services:
-  api:
+  autonomous:
+    ports:
+      - "9000:8001"  # Change from 8001 to 9000
+```
+
+### Troubleshooting
+
+**Container Won't Start**
+
+Symptoms: Container exits immediately
+
+Solution:
+```bash
+# 1. Check logs
+docker-compose logs autonomous
+
+# 2. Check if ports are in use
+lsof -i :8001          # Check port 8001
+netstat -tlnp | grep 8003  # Check port 8003
+
+# 3. Free port and restart
+docker-compose restart autonomous
+```
+
+**Database Connection Error**
+
+Symptoms: "Cannot connect to postgres:5432"
+
+Solution:
+```bash
+# 1. Check if PostgreSQL is healthy
+docker-compose ps | grep postgres
+
+# 2. If not healthy, restart
+docker-compose restart postgres
+
+# 3. Wait for health check (30 seconds)
+docker-compose logs postgres
+
+# 4. Check credentials in .env
+grep POSTGRES_PASSWORD .env
+```
+
+**Out of Memory**
+
+Symptoms: Container keeps restarting, OOMKilled
+
+Solution:
+```bash
+# 1. Check memory usage
+docker stats
+
+# 2. Increase Docker memory limit (Windows/macOS):
+# Settings → Resources → Memory: 8GB (from 2GB)
+
+# 3. Reduce model training batch size
+# Edit Dockerfile.training:
+ENV BATCH_SIZE=16  # from 32
+```
+
+**Volumes Not Persisting**
+
+Symptoms: Data lost after restart
+
+Solution:
+```bash
+# 1. Verify volume exists
+docker volume ls | grep vn-quant
+
+# 2. Check volume mapping
+docker inspect vnquant-postgres -f '{{json .Mounts}}'
+
+# 3. Ensure .env has correct volume paths
+grep "POSTGRES_DATA" docker-compose.yml
+```
+
+**API Not Responding**
+
+Symptoms: "Connection refused" when accessing http://localhost:8003
+
+Solution:
+```bash
+# 1. Check if container is running
+docker-compose ps | grep api
+
+# 2. Check if listening on port
+docker exec vnquant-api netstat -tlnp | grep 8003
+
+# 3. Check API logs for errors
+docker-compose logs api
+
+# 4. Restart API
+docker-compose restart api
+```
+
+### Networking
+
+**Internal Communication**
+
+Services communicate via `vn-quant-network`:
+
+```
+autonomous ←→ postgres (DB)
+autonomous ←→ redis (cache)
+api ←→ postgres
+api ←→ redis
+trainer ←→ postgres
+```
+
+**External Communication**
+
+Services connect to external APIs:
+
+```
+autonomous → CafeF API (market data)
+autonomous → Finnhub API (news)
+api → <client browser>
+trainer → Email SMTP server (optional)
+```
+
+### Production Deployment
+
+**Security Checklist:**
+
+- [ ] Change all default passwords in `.env`
+- [ ] Set `ALLOW_REAL_TRADING=false` (until tested)
+- [ ] Enable `ENVIRONMENT=production`
+- [ ] Use strong `JWT_SECRET`
+- [ ] Configure HTTPS (reverse proxy with nginx)
+- [ ] Set up firewall rules
+- [ ] Enable audit logging
+- [ ] Regular backups enabled
+
+**Scaling:**
+
+**Multiple Instances:**
+```bash
+# Run multiple autonomous traders
+docker run -d --name vnquant-trader1 vnquant:latest
+docker run -d --name vnquant-trader2 vnquant:latest
+
+# Use load balancer (nginx)
+# Each trader operates independently on different stock clusters
+```
+
+**Performance Tuning:**
+```yaml
+# In docker-compose.yml
+services:
+  autonomous:
     deploy:
       resources:
         limits:
-          memory: 2G
+          cpus: '2'
+          memory: 4G
         reservations:
-          memory: 1G
+          cpus: '1'
+          memory: 2G
 ```
 
-**Models not loading:**
+### Backup & Disaster Recovery
+
 ```bash
-# Verify volume mount
-docker exec vn-quant ls -la /app/models/
+# Daily backup script
+#!/bin/bash
+BACKUP_DIR="/backups/vnquant"
+DATE=$(date +%Y%m%d_%H%M%S)
 
-# If not found, check local models directory
-ls -la models/
+# Backup volumes
+docker run --rm \
+  -v vnquant_postgres_data:/source \
+  -v $BACKUP_DIR:/backup \
+  ubuntu tar czf /backup/postgres_$DATE.tar.gz -C /source .
 
-# Ensure Dockerfile copies models correctly
+# Backup .env and configs
+cp .env $BACKUP_DIR/env_$DATE.bak
+cp docker-compose.yml $BACKUP_DIR/docker-compose_$DATE.yml
+
+echo "Backup completed: $BACKUP_DIR"
 ```
 
 ---
@@ -784,116 +1088,6 @@ curl http://localhost:8000/api/status
 
 ---
 
-## Scaling
-
-### Performance Optimization
-
-**For faster predictions:**
-```bash
-# Increase worker threads
-export API_WORKERS=8
-
-# Batch predict more efficiently
-export MODEL_BATCH_SIZE=50  # Default 10
-
-# Cache more data
-export CACHE_TTL=600  # 10 minutes (default 5)
-```
-
-**For lower memory usage:**
-```bash
-# Load models on demand
-export LAZY_LOAD_MODELS=true
-
-# Reduce position history
-export MAX_HISTORY_DAYS=30  # Keep 30 days only
-```
-
-### Multi-Instance Deployment
-
-**Planned: Load balancer (Nginx)**
-```nginx
-upstream vn_quant {
-    server localhost:8000;
-    server localhost:8001;
-    server localhost:8002;
-}
-
-server {
-    listen 80;
-    server_name trading.example.com;
-
-    location / {
-        proxy_pass http://vn_quant;
-    }
-}
-```
-
-### Database Optimization (PostgreSQL)
-
-**For production with 1M+ records:**
-```bash
-# Migrate from SQLite to PostgreSQL
-DATABASE_URL=postgresql://user:pass@localhost/vnquant
-
-# Index key queries
-CREATE INDEX idx_orders_symbol ON orders(symbol);
-CREATE INDEX idx_positions_active ON positions(status);
-CREATE INDEX idx_conversations_timestamp ON agent_conversations(timestamp);
-
-# Connection pooling
-DATABASE_POOL_SIZE=20
-```
-
----
-
-## Maintenance
-
-### Regular Maintenance Tasks
-
-**Daily:**
-- Check logs for errors: `grep ERROR logs/autonomous_trading.log`
-- Monitor portfolio: http://localhost:8000/autonomous
-- Verify broker connection (if live)
-
-**Weekly:**
-- Backup database: `cp data/paper_trading.db data/backup_$(date).db`
-- Review P&L report
-- Check disk usage: `du -sh .`
-- Restart service for memory cleanup
-
-**Monthly:**
-- Update dependencies: `pip install --upgrade -r requirements.txt`
-- Retrain ML models (future)
-- Analyze trading performance
-- Optimize configuration parameters
-
-**Quarterly:**
-- Full security audit
-- Performance profiling
-- Disaster recovery drill
-
-### Backup & Recovery
-
-**Backup command:**
-```bash
-# Backup all critical data
-tar -czf vn-quant-backup-$(date +%Y%m%d).tar.gz \
-  data/ logs/ models/ .env requirements.txt
-
-# Restore from backup
-tar -xzf vn-quant-backup-20260112.tar.gz
-```
-
-**Database backup:**
-```bash
-# SQLite
-cp data/paper_trading.db data/backup-$(date +%s).db
-
-# PostgreSQL (if used)
-pg_dump vnquant > backup-$(date +%Y%m%d).sql
-```
-
 ---
 
 ## Production Checklist
@@ -906,11 +1100,10 @@ Before deploying to production:
 - [ ] Backups configured: Automated backup schedule
 - [ ] Monitoring active: Log aggregation, alerts set
 - [ ] Security hardened: Credentials rotated, firewall rules
-- [ ] Documentation updated: Deployment guide current
 - [ ] Team trained: Operations team familiar with system
 - [ ] Dry run completed: Full trading cycle tested
 - [ ] Rollback plan ready: Recovery procedures documented
 
 ---
 
-*This deployment guide ensures smooth setup and operation of VN-Quant in any environment. For issues not covered, refer to system logs or contact the development team.*
+*This deployment guide covers development, Docker, and production deployments. For detailed configuration, monitoring, and scaling strategies, see system-architecture.md.*
