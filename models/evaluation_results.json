@@ -1,0 +1,1901 @@
+{
+  "evaluated_at": "2026-01-12T18:03:54.878584",
+  "total_models": 100,
+  "healthy_models": 47,
+  "needs_retrain": 53,
+  "retrain_symbols": [
+    "AGG",
+    "APH",
+    "BID",
+    "BVH",
+    "BWE",
+    "CEO",
+    "CII",
+    "CTD",
+    "CTG",
+    "DGC",
+    "DIG",
+    "DXG",
+    "EIB",
+    "EVF",
+    "FPT",
+    "FTS",
+    "GAS",
+    "GEX",
+    "GVR",
+    "HAG",
+    "HDB",
+    "HDC",
+    "HDG",
+    "HSG",
+    "HU1",
+    "IDC",
+    "KBC",
+    "KDH",
+    "LPB",
+    "MBB",
+    "MBS",
+    "MSN",
+    "NKG",
+    "NVL",
+    "PDR",
+    "PLX",
+    "PNJ",
+    "PVD",
+    "PVS",
+    "REE",
+    "SBT",
+    "SCR",
+    "SHS",
+    "TCB",
+    "TLG",
+    "TPB",
+    "VCB",
+    "VCG",
+    "VCS",
+    "VHC",
+    "VHM",
+    "VIC",
+    "VSC"
+  ],
+  "average_health_score": 56.3,
+  "results": [
+    {
+      "symbol": "ACB",
+      "evaluated_at": "2026-01-12T18:03:54.394999",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5333287428766922,
+        "mae": 1.4387664358900083,
+        "rmse": 2.07450357053998,
+        "volatility": 1.06869934556818,
+        "recent_trend": -1.4056224899598393,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 70
+    },
+    {
+      "symbol": "AGG",
+      "evaluated_at": "2026-01-12T18:03:54.426688",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6256066832895829,
+        "mae": 4.5993482196544,
+        "rmse": 6.406754683747085,
+        "volatility": 1.5305247408647025,
+        "recent_trend": -11.67192429022082,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.60%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "APH",
+      "evaluated_at": "2026-01-12T18:03:54.432695",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49254528260234187,
+        "mae": 2.6079218208644956,
+        "rmse": 3.9670244344082555,
+        "volatility": 2.30952661735811,
+        "recent_trend": -5.4411764705882355,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.3%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "BCG",
+      "evaluated_at": "2026-01-12T18:03:54.438440",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "BCM",
+      "evaluated_at": "2026-01-12T18:03:54.438440",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5550913223935426,
+        "mae": 2.9673156272076424,
+        "rmse": 4.676456082722332,
+        "volatility": 2.2009340342516346,
+        "recent_trend": 7.088989441930618,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "BFC",
+      "evaluated_at": "2026-01-12T18:03:54.469692",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.516813000970645,
+        "mae": 2.0680419397933836,
+        "rmse": 3.04004587086869,
+        "volatility": 0.9875035294799864,
+        "recent_trend": 4.5662100456621,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 60
+    },
+    {
+      "symbol": "BID",
+      "evaluated_at": "2026-01-12T18:03:54.475437",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5858356690010936,
+        "mae": 7.329816171532881,
+        "rmse": 9.89612476223046,
+        "volatility": 2.1842041502174037,
+        "recent_trend": 20.54973821989529,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (7.33%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "BSR",
+      "evaluated_at": "2026-01-12T18:03:54.478920",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "BVH",
+      "evaluated_at": "2026-01-12T18:03:54.478920",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5555658988670377,
+        "mae": 9.22203516110722,
+        "rmse": 12.240891676517768,
+        "volatility": 3.224591307810737,
+        "recent_trend": 27.84090909090909,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (9.22%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "BWE",
+      "evaluated_at": "2026-01-12T18:03:54.484665",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4869773386070596,
+        "mae": 2.3242325064299103,
+        "rmse": 2.9096104546029826,
+        "volatility": 2.195438958957369,
+        "recent_trend": -4.574468085106383,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.7%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "CEO",
+      "evaluated_at": "2026-01-12T18:03:54.489146",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5742952165670279,
+        "mae": 10.399670961742228,
+        "rmse": 13.952241507606674,
+        "volatility": 3.884971338497048,
+        "recent_trend": -30.038022813688215,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (10.40%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "CII",
+      "evaluated_at": "2026-01-12T18:03:54.493150",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5026580617481159,
+        "mae": 10.656104587023691,
+        "rmse": 14.182051764357839,
+        "volatility": 3.1242941566398033,
+        "recent_trend": -32.536764705882355,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (10.66%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 50
+    },
+    {
+      "symbol": "CTD",
+      "evaluated_at": "2026-01-12T18:03:54.498633",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5397596937467006,
+        "mae": 4.830510375359367,
+        "rmse": 6.588475032372884,
+        "volatility": 2.200075668801995,
+        "recent_trend": -13.912009512485138,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.83%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 50
+    },
+    {
+      "symbol": "CTG",
+      "evaluated_at": "2026-01-12T18:03:54.502375",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5997035017234033,
+        "mae": 7.200005907448821,
+        "rmse": 9.691581491532965,
+        "volatility": 6.906667966422192,
+        "recent_trend": -21.634615384615387,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (7.20%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "DBC",
+      "evaluated_at": "2026-01-12T18:03:54.507120",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5250847177218467,
+        "mae": 2.648856113898523,
+        "rmse": 3.4040717367142608,
+        "volatility": 1.7715801205044894,
+        "recent_trend": -5.109489051094891,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 60
+    },
+    {
+      "symbol": "DCM",
+      "evaluated_at": "2026-01-12T18:03:54.512866",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6820318950647664,
+        "mae": 1.8021121595590346,
+        "rmse": 1.5509371472566627,
+        "volatility": 1.3073841649823412,
+        "recent_trend": 1.167883211678832,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "DGC",
+      "evaluated_at": "2026-01-12T18:03:54.516607",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49134645374237496,
+        "mae": 11.692893478682041,
+        "rmse": 15.358065518540815,
+        "volatility": 4.258154450334072,
+        "recent_trend": -35.36082474226804,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.1%)",
+        "MAE too high (11.69%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "DHG",
+      "evaluated_at": "2026-01-12T18:03:54.521091",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6493665784909923,
+        "mae": 1.2232001273338582,
+        "rmse": 1.305966472213656,
+        "volatility": 0.5225019470716524,
+        "recent_trend": -0.7714561234329798,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "DIG",
+      "evaluated_at": "2026-01-12T18:03:54.526575",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5648422218234349,
+        "mae": 8.009707919641556,
+        "rmse": 10.300602040384295,
+        "volatility": 2.403204025012075,
+        "recent_trend": -23.076923076923077,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (8.01%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "DPM",
+      "evaluated_at": "2026-01-12T18:03:54.532056",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6976741252582037,
+        "mae": 1.252796408546354,
+        "rmse": 1.6870592715420591,
+        "volatility": 1.3681870419137192,
+        "recent_trend": 0.8492569002123143,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "DXG",
+      "evaluated_at": "2026-01-12T18:03:54.535800",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5588927000378765,
+        "mae": 6.234183165117384,
+        "rmse": 8.893262416242326,
+        "volatility": 2.7103850117208963,
+        "recent_trend": -19.06005221932115,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (6.23%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "EIB",
+      "evaluated_at": "2026-01-12T18:03:54.540805",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.47172938073073645,
+        "mae": 2.7564189954368934,
+        "rmse": 3.2306867747851946,
+        "volatility": 2.6755216934692743,
+        "recent_trend": -5.333333333333334,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.2%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "EVF",
+      "evaluated_at": "2026-01-12T18:03:54.546028",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6748481544373538,
+        "mae": 3.560335940301334,
+        "rmse": 4.947010384661726,
+        "volatility": 1.9840280824930174,
+        "recent_trend": -10.16260162601626,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (3.56%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "FPT",
+      "evaluated_at": "2026-01-12T18:03:54.549507",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4859191115508866,
+        "mae": 1.3299204634727415,
+        "rmse": 1.006146133026917,
+        "volatility": 1.4106758903019134,
+        "recent_trend": -0.10256410256410256,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.6%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "FTS",
+      "evaluated_at": "2026-01-12T18:03:54.554751",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4875912062249118,
+        "mae": 1.2479997868546389,
+        "rmse": 2.2168831232079556,
+        "volatility": 2.29805611833489,
+        "recent_trend": -2.121212121212132,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.8%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "GAS",
+      "evaluated_at": "2026-01-12T18:03:54.558755",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6449629633318876,
+        "mae": 15.761651380601624,
+        "rmse": 21.75330060136686,
+        "volatility": 3.2569193537714334,
+        "recent_trend": 49.38461538461538,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (15.76%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "GEX",
+      "evaluated_at": "2026-01-12T18:03:54.563977",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49375262371761114,
+        "mae": 5.0300159035597165,
+        "rmse": 6.8499973136103804,
+        "volatility": 3.431382336494372,
+        "recent_trend": -15.043290043290044,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.4%)",
+        "MAE too high (5.03%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "GMD",
+      "evaluated_at": "2026-01-12T18:03:54.568720",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6023307862858467,
+        "mae": 1.4749705231391184,
+        "rmse": 1.550171105307472,
+        "volatility": 1.550412773121197,
+        "recent_trend": -0.1610305958132045,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "GVR",
+      "evaluated_at": "2026-01-12T18:03:54.572724",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6738918801307895,
+        "mae": 4.600810055787679,
+        "rmse": 6.994067499403017,
+        "volatility": 2.8424770734478337,
+        "recent_trend": 13.464991023339318,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.60%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "HAG",
+      "evaluated_at": "2026-01-12T18:03:54.577946",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6059655378515374,
+        "mae": 3.4036770377275016,
+        "rmse": 4.12572389593472,
+        "volatility": 2.291100886604925,
+        "recent_trend": -8.033240997229916,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (3.40%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "HAH",
+      "evaluated_at": "2026-01-12T18:03:54.583427",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.67879075641671,
+        "mae": 2.8365892708420675,
+        "rmse": 4.459156567541861,
+        "volatility": 1.8516571530608907,
+        "recent_trend": -7.317073170731707,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "HCM",
+      "evaluated_at": "2026-01-12T18:03:54.587336",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6471087556071123,
+        "mae": 1.325635831367448,
+        "rmse": 1.8714683989828913,
+        "volatility": 1.50957565617623,
+        "recent_trend": -1.7391304347826086,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "HDB",
+      "evaluated_at": "2026-01-12T18:03:54.593341",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6405470346497656,
+        "mae": 5.696020640342682,
+        "rmse": 8.01394292199539,
+        "volatility": 5.018326764888652,
+        "recent_trend": -15.326251896813353,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (5.70%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "HDC",
+      "evaluated_at": "2026-01-12T18:03:54.597085",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.511231170616937,
+        "mae": 8.658562954195268,
+        "rmse": 11.21228767239539,
+        "volatility": 1.9905137261193317,
+        "recent_trend": -24.772313296903462,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (8.66%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 50
+    },
+    {
+      "symbol": "HDG",
+      "evaluated_at": "2026-01-12T18:03:54.602333",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5029472478901855,
+        "mae": 6.467583657075745,
+        "rmse": 8.254269273993845,
+        "volatility": 2.2259778787778934,
+        "recent_trend": -17.55485893416928,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (6.47%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 50
+    },
+    {
+      "symbol": "HHV",
+      "evaluated_at": "2026-01-12T18:03:54.606339",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "HNG",
+      "evaluated_at": "2026-01-12T18:03:54.606339",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5656697571975872,
+        "mae": 2.214553239440387,
+        "rmse": 2.4825896426421554,
+        "volatility": 2.0768841400263898,
+        "recent_trend": 3.389830508474576,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "HPG",
+      "evaluated_at": "2026-01-12T18:03:54.612345",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6091524621798236,
+        "mae": 1.999439264634959,
+        "rmse": 2.9676757934636337,
+        "volatility": 1.2387343858614,
+        "recent_trend": -4.029304029304029,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "HSG",
+      "evaluated_at": "2026-01-12T18:03:54.615827",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4786267878116927,
+        "mae": 2.8770664763637543,
+        "rmse": 4.0189676882430785,
+        "volatility": 1.8072072495476637,
+        "recent_trend": -7.418397626112759,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.9%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "HT1",
+      "evaluated_at": "2026-01-12T18:03:54.621311",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.64379210376348,
+        "mae": 2.0848545241586605,
+        "rmse": 3.3061061593683294,
+        "volatility": 2.5877043380042255,
+        "recent_trend": 5.095541401273886,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "HTV",
+      "evaluated_at": "2026-01-12T18:03:54.624793",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.667795253922495,
+        "mae": 1.6566188323876232,
+        "rmse": 1.2396545244350505,
+        "volatility": 2.7396423302930666,
+        "recent_trend": -0.8264462809917356,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "HU1",
+      "evaluated_at": "2026-01-12T18:03:54.630013",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49309601932051766,
+        "mae": 1.6108323585725324,
+        "rmse": 2.242487871157817,
+        "volatility": 2.530923406594699,
+        "recent_trend": 1.5151515151515151,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.3%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "IDC",
+      "evaluated_at": "2026-01-12T18:03:54.635499",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4646635037579653,
+        "mae": 1.3919977773133725,
+        "rmse": 1.0792811549325259,
+        "volatility": 2.146229594073944,
+        "recent_trend": -0.5102040816326531,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (46.5%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "KBC",
+      "evaluated_at": "2026-01-12T18:03:54.639240",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4853945383795716,
+        "mae": 0.9535134273046407,
+        "rmse": 1.3948540142107313,
+        "volatility": 2.1230391212718045,
+        "recent_trend": 1.2658227848101267,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.5%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "KDH",
+      "evaluated_at": "2026-01-12T18:03:54.644986",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4960137280927674,
+        "mae": 5.877022212979369,
+        "rmse": 8.383256792533523,
+        "volatility": 2.59364664672625,
+        "recent_trend": -16.9811320754717,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.6%)",
+        "MAE too high (5.88%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "KOS",
+      "evaluated_at": "2026-01-12T18:03:54.649732",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5039822484079558,
+        "mae": 0.8335596423386856,
+        "rmse": 1.4920293671268274,
+        "volatility": 1.2672444381576502,
+        "recent_trend": -0.3826530612244898,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 70
+    },
+    {
+      "symbol": "LPB",
+      "evaluated_at": "2026-01-12T18:03:54.653735",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4785865528539647,
+        "mae": 6.428329344772754,
+        "rmse": 7.934566647635687,
+        "volatility": 2.3034927726553938,
+        "recent_trend": -16.767676767676768,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.9%)",
+        "MAE too high (6.43%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "MBB",
+      "evaluated_at": "2026-01-12T18:03:54.657484",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.45152374047437094,
+        "mae": 2.5104978773395454,
+        "rmse": 4.342178312760035,
+        "volatility": 1.8548819317133032,
+        "recent_trend": 6.22568093385214,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (45.2%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "MBS",
+      "evaluated_at": "2026-01-12T18:03:54.663223",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49301125198146845,
+        "mae": 4.344831998730626,
+        "rmse": 5.3794545476542055,
+        "volatility": 1.9423166359810273,
+        "recent_trend": -10.884353741496598,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.3%)",
+        "MAE too high (4.34%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "MSB",
+      "evaluated_at": "2026-01-12T18:03:54.666967",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "MSN",
+      "evaluated_at": "2026-01-12T18:03:54.666967",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.46140614886982984,
+        "mae": 2.3530369539620937,
+        "rmse": 2.73878532025845,
+        "volatility": 1.3295796388734582,
+        "recent_trend": -4.25531914893617,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (46.1%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "MWG",
+      "evaluated_at": "2026-01-12T18:03:54.672972",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.620200118220799,
+        "mae": 0.7877508900464524,
+        "rmse": 1.7149873886147002,
+        "volatility": 2.0721308961176885,
+        "recent_trend": 0.2331002331002331,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "NKG",
+      "evaluated_at": "2026-01-12T18:03:54.676975",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6289310091942145,
+        "mae": 3.366062698143771,
+        "rmse": 4.620919108655436,
+        "volatility": 1.962856560349963,
+        "recent_trend": -9.202453987730062,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (3.37%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "NT2",
+      "evaluated_at": "2026-01-12T18:03:54.680979",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6432142447274651,
+        "mae": 1.7814544618434693,
+        "rmse": 2.4575868069895104,
+        "volatility": 1.4432648625325115,
+        "recent_trend": 1.4553014553014554,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "NVL",
+      "evaluated_at": "2026-01-12T18:03:54.685991",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.49762102595501734,
+        "mae": 5.848697038607327,
+        "rmse": 7.933258721327631,
+        "volatility": 2.774992594928185,
+        "recent_trend": -16.333333333333332,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (49.8%)",
+        "MAE too high (5.85%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "OCB",
+      "evaluated_at": "2026-01-12T18:03:54.689994",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6880383430398174,
+        "mae": 2.481772014244146,
+        "rmse": 3.9611388415644533,
+        "volatility": 1.2016397879811533,
+        "recent_trend": -5.9760956175298805,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "PAN",
+      "evaluated_at": "2026-01-12T18:03:54.694740",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5143815540068859,
+        "mae": 2.534875723263506,
+        "rmse": 3.6356107259442636,
+        "volatility": 1.1391005162408194,
+        "recent_trend": -5.6537102473498235,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 60
+    },
+    {
+      "symbol": "PC1",
+      "evaluated_at": "2026-01-12T18:03:54.700486",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5095351237651173,
+        "mae": 1.6261584535539382,
+        "rmse": 1.966786504381408,
+        "volatility": 2.760582124159676,
+        "recent_trend": 2.3706896551724137,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 70
+    },
+    {
+      "symbol": "PDN",
+      "evaluated_at": "2026-01-12T18:03:54.704490",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "PDR",
+      "evaluated_at": "2026-01-12T18:03:54.704490",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.5295857617354958,
+        "mae": 7.92808634417821,
+        "rmse": 10.46738526863367,
+        "volatility": 2.673929552085864,
+        "recent_trend": -23.672566371681416,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (7.93%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 50
+    },
+    {
+      "symbol": "PGI",
+      "evaluated_at": "2026-01-12T18:03:54.708233",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "PHR",
+      "evaluated_at": "2026-01-12T18:03:54.710235",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5685044496206086,
+        "mae": 2.865810016640745,
+        "rmse": 4.5433769164700735,
+        "volatility": 2.431942075282777,
+        "recent_trend": 7.216494845360824,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "PLX",
+      "evaluated_at": "2026-01-12T18:03:54.713979",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4611733591295729,
+        "mae": 7.728046039747501,
+        "rmse": 10.943029706557198,
+        "volatility": 2.6197295222691674,
+        "recent_trend": 23.032904148783977,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (46.1%)",
+        "MAE too high (7.73%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "PNJ",
+      "evaluated_at": "2026-01-12T18:03:54.719723",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4726934684464608,
+        "mae": 5.499917834828078,
+        "rmse": 7.505736909776046,
+        "volatility": 1.350028328326138,
+        "recent_trend": 14.06423034330011,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.3%)",
+        "MAE too high (5.50%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "POW",
+      "evaluated_at": "2026-01-12T18:03:54.723467",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.694351041187885,
+        "mae": 1.8317159784659118,
+        "rmse": 2.8378600935192817,
+        "volatility": 4.046816858125428,
+        "recent_trend": -4.318936877076411,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "PTB",
+      "evaluated_at": "2026-01-12T18:03:54.729214",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6847138568599425,
+        "mae": 2.226804869135732,
+        "rmse": 3.2601501167098133,
+        "volatility": 3.484731218633609,
+        "recent_trend": -3.6964980544747084,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "PVD",
+      "evaluated_at": "2026-01-12T18:03:54.734961",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6361957963108389,
+        "mae": 4.746276503931635,
+        "rmse": 6.061736137205367,
+        "volatility": 2.9251420145467546,
+        "recent_trend": 11.11111111111111,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.75%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "PVS",
+      "evaluated_at": "2026-01-12T18:03:54.738706",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6183316716959388,
+        "mae": 4.579740760699443,
+        "rmse": 5.402750826999506,
+        "volatility": 2.492735095103048,
+        "recent_trend": 10.876132930513595,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.58%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "PVT",
+      "evaluated_at": "2026-01-12T18:03:54.745453",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6747767229883538,
+        "mae": 2.652845600821175,
+        "rmse": 4.658615160926686,
+        "volatility": 2.296086825528311,
+        "recent_trend": 6.842105263157896,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "REE",
+      "evaluated_at": "2026-01-12T18:03:54.749197",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4812990060239155,
+        "mae": 2.0538995254488883,
+        "rmse": 2.853181966874887,
+        "volatility": 0.725306323020503,
+        "recent_trend": -4.538341158059469,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.1%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 45
+    },
+    {
+      "symbol": "SAB",
+      "evaluated_at": "2026-01-12T18:03:54.754417",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5097781151128467,
+        "mae": 2.0975256834026474,
+        "rmse": 3.410537984921662,
+        "volatility": 2.293530005862355,
+        "recent_trend": -3.831041257367387,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 60
+    },
+    {
+      "symbol": "SBT",
+      "evaluated_at": "2026-01-12T18:03:54.759422",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4739999723778643,
+        "mae": 1.5369856796193402,
+        "rmse": 2.422560046559956,
+        "volatility": 0.9056606383696932,
+        "recent_trend": -2.4,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.4%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "SCR",
+      "evaluated_at": "2026-01-12T18:03:54.765168",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6496519530565217,
+        "mae": 4.7689425167993615,
+        "rmse": 6.610310217705447,
+        "volatility": 2.249213969598358,
+        "recent_trend": -13.445378151260504,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (4.77%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "SHB",
+      "evaluated_at": "2026-01-12T18:03:54.768912",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.66638191669955,
+        "mae": 2.100871715243192,
+        "rmse": 3.596348333684685,
+        "volatility": 1.524716026699947,
+        "recent_trend": -4.624277456647398,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "SHS",
+      "evaluated_at": "2026-01-12T18:03:54.772655",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6561016475988685,
+        "mae": 5.767335705142662,
+        "rmse": 6.720472837957885,
+        "volatility": 2.6103289830033702,
+        "recent_trend": -14.545454545454545,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (5.77%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "SSI",
+      "evaluated_at": "2026-01-12T18:03:54.778139",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6359014232524283,
+        "mae": 2.8899887802949853,
+        "rmse": 4.195545832757642,
+        "volatility": 2.9438793431445993,
+        "recent_trend": -7.4695121951219505,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "STB",
+      "evaluated_at": "2026-01-12T18:03:54.783623",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5438455619548869,
+        "mae": 1.5296683242897795,
+        "rmse": 2.951837821842541,
+        "volatility": 3.3458553395248254,
+        "recent_trend": 3.187250996015936,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 70
+    },
+    {
+      "symbol": "TCB",
+      "evaluated_at": "2026-01-12T18:03:54.787103",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.45225040802764155,
+        "mae": 1.6406616054803975,
+        "rmse": 2.6145194283900004,
+        "volatility": 1.9904085116983006,
+        "recent_trend": 3.531073446327684,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (45.2%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "TCH",
+      "evaluated_at": "2026-01-12T18:03:54.791414",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "TCL",
+      "evaluated_at": "2026-01-12T18:03:54.791414",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "TLG",
+      "evaluated_at": "2026-01-12T18:03:54.791414",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6135363422097715,
+        "mae": 7.240048275328231,
+        "rmse": 9.547527361140414,
+        "volatility": 3.5486258757642433,
+        "recent_trend": -20.71651090342679,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (7.24%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "TPB",
+      "evaluated_at": "2026-01-12T18:03:54.797420",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4863855373382249,
+        "mae": 0.9006793286490016,
+        "rmse": 1.574223588606272,
+        "volatility": 1.6686576915245745,
+        "recent_trend": 0.0,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.6%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "VCB",
+      "evaluated_at": "2026-01-12T18:03:54.801424",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6799224336850935,
+        "mae": 5.771388796518218,
+        "rmse": 7.493279809570099,
+        "volatility": 2.1711420044628804,
+        "recent_trend": 15.449915110356535,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (5.77%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "VCG",
+      "evaluated_at": "2026-01-12T18:03:54.807534",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4845426559757341,
+        "mae": 4.691367395776046,
+        "rmse": 5.823483007283694,
+        "volatility": 1.6330483520949859,
+        "recent_trend": -12.09016393442623,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (48.5%)",
+        "MAE too high (4.69%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "VCI",
+      "evaluated_at": "2026-01-12T18:03:54.811278",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.596254823216168,
+        "mae": 2.7059370386140795,
+        "rmse": 2.7800523486021396,
+        "volatility": 2.198956039553845,
+        "recent_trend": -4.279600570613409,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "VCS",
+      "evaluated_at": "2026-01-12T18:03:54.816763",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4755916682810527,
+        "mae": 3.7009201599273522,
+        "rmse": 5.66557633849494,
+        "volatility": 1.4281362666958608,
+        "recent_trend": -10.16597510373444,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.6%)",
+        "MAE too high (3.70%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "VGC",
+      "evaluated_at": "2026-01-12T18:03:54.821594",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.5756054977642145,
+        "mae": 1.59258120342933,
+        "rmse": 1.771152719626059,
+        "volatility": 1.9196006023249228,
+        "recent_trend": 1.1286681715575622,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "VHC",
+      "evaluated_at": "2026-01-12T18:03:54.825357",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.4559346426991178,
+        "mae": 1.5287579683186892,
+        "rmse": 1.9856997190093062,
+        "volatility": 1.349543034307304,
+        "recent_trend": -0.8680555555555556,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (45.6%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 55
+    },
+    {
+      "symbol": "VHM",
+      "evaluated_at": "2026-01-12T18:03:54.830841",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.47518536298756636,
+        "mae": 11.330949721275871,
+        "rmse": 14.469777596051962,
+        "volatility": 4.874398840082481,
+        "recent_trend": 33.07984790874524,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "Direction accuracy low (47.5%)",
+        "MAE too high (11.33%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 35
+    },
+    {
+      "symbol": "VIB",
+      "evaluated_at": "2026-01-12T18:03:54.836325",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6511890849192757,
+        "mae": 2.7082496631248123,
+        "rmse": 3.207934629618717,
+        "volatility": 1.2840647698215244,
+        "recent_trend": -5.026455026455026,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "VIC",
+      "evaluated_at": "2026-01-12T18:03:54.840338",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6134002985973545,
+        "mae": 11.431569903913541,
+        "rmse": 15.398772799713669,
+        "volatility": 10.381676734432666,
+        "recent_trend": -34.08239700374532,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (11.43%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "VIX",
+      "evaluated_at": "2026-01-12T18:03:54.847132",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    },
+    {
+      "symbol": "VJC",
+      "evaluated_at": "2026-01-12T18:03:54.847132",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.538967016266813,
+        "mae": 2.318561292143915,
+        "rmse": 2.3423075746100546,
+        "volatility": 2.8169085741357165,
+        "recent_trend": -3.5436893203883497,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 60
+    },
+    {
+      "symbol": "VND",
+      "evaluated_at": "2026-01-12T18:03:54.850644",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6627899210488816,
+        "mae": 0.6875262555854424,
+        "rmse": 1.3251770253181012,
+        "volatility": 2.585968039440792,
+        "recent_trend": 0.0,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "VNM",
+      "evaluated_at": "2026-01-12T18:03:54.856389",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6026210491292887,
+        "mae": 1.764565235204455,
+        "rmse": 3.3555729863538932,
+        "volatility": 1.628946614806017,
+        "recent_trend": -3.7854889589905363,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "VPB",
+      "evaluated_at": "2026-01-12T18:03:54.859869",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6981136970031616,
+        "mae": 2.6698508732216095,
+        "rmse": 4.3181266336625,
+        "volatility": 2.381354696328439,
+        "recent_trend": -6.6115702479338845,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "VPI",
+      "evaluated_at": "2026-01-12T18:03:54.865875",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.6964650919985815,
+        "mae": 2.3725324520601685,
+        "rmse": 3.708652108368997,
+        "volatility": 1.996676841894431,
+        "recent_trend": -4.912280701754386,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 75
+    },
+    {
+      "symbol": "VRE",
+      "evaluated_at": "2026-01-12T18:03:54.869620",
+      "status": "ok",
+      "metrics": {
+        "direction_accuracy": 0.622693873444665,
+        "mae": 1.879896237257852,
+        "rmse": 1.9726058794557932,
+        "volatility": 4.197419384298202,
+        "recent_trend": 1.744186046511628,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": false,
+      "retrain_reasons": [],
+      "model_age_days": 16,
+      "health_score": 85
+    },
+    {
+      "symbol": "VSC",
+      "evaluated_at": "2026-01-12T18:03:54.875104",
+      "status": "needs_retrain",
+      "metrics": {
+        "direction_accuracy": 0.6950438539229877,
+        "mae": 5.10582780365639,
+        "rmse": 6.877408270447941,
+        "volatility": 2.4486304855832737,
+        "recent_trend": -14.502164502164502,
+        "data_points": 25,
+        "evaluation_method": "heuristic"
+      },
+      "needs_retrain": true,
+      "retrain_reasons": [
+        "MAE too high (5.11%)"
+      ],
+      "model_age_days": 16,
+      "health_score": 65
+    },
+    {
+      "symbol": "VTB",
+      "evaluated_at": "2026-01-12T18:03:54.878584",
+      "status": "no_data",
+      "metrics": {},
+      "needs_retrain": false,
+      "retrain_reasons": [
+        "No data file"
+      ]
+    }
+  ]
+}

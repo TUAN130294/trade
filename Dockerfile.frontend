@@ -1,0 +1,51 @@
+# ===========================================
+# VN-QUANT Frontend - Docker Image (Nginx)
+# ===========================================
+
+# Stage 1: Build
+FROM node:20-alpine AS builder
+
+WORKDIR /build
+
+# Copy package files
+COPY vn-quant-web/package.json vn-quant-web/package-lock.json ./
+
+# Install dependencies (build and dev for Vite)
+RUN npm ci
+
+# Copy source code and config
+COPY vn-quant-web/src ./src
+COPY vn-quant-web/public ./public
+COPY vn-quant-web/index.html ./
+COPY vn-quant-web/vite.config.js ./
+COPY vn-quant-web/tailwind.config.js ./
+COPY vn-quant-web/postcss.config.js ./
+
+# Build application
+RUN npm run build
+
+# Stage 2: Runtime
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy built app from builder stage
+COPY --from=builder /build/dist .
+
+# Create health check script
+RUN echo '#!/bin/sh' > /healthcheck.sh && \
+    echo 'wget --quiet --tries=1 --spider http://localhost/health || exit 1' >> /healthcheck.sh && \
+    chmod +x /healthcheck.sh
+
+# Expose port
+EXPOSE 80
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD /healthcheck.sh
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

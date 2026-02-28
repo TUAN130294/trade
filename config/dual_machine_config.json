@@ -1,0 +1,82 @@
+{
+  "version": "3.0",
+  "description": "VN-Quant: 5070Ti Weekend Training + i7-14700 Daily",
+  "updated": "2026-01-12",
+
+  "machines": {
+    "home_gpu": {
+      "name": "Home PC - RTX 5070Ti",
+      "type": "gpu",
+      "gpu": "RTX 5070Ti (16GB VRAM)",
+      "role": "weekend_training",
+      "schedule": "Saturday/Sunday",
+      "tasks": [
+        "Full retrain 100 models",
+        "Hyperparameter tuning",
+        "New stock training"
+      ],
+      "config": {
+        "batch_size": 64,
+        "epochs": 100,
+        "num_workers": 8,
+        "mixed_precision": true
+      },
+      "estimated_time": "8-12 hours for 100 stocks"
+    },
+
+    "host_cpu": {
+      "name": "Host Server - i7-14700",
+      "type": "cpu",
+      "cpu": "Intel i7-14700 (28 threads)",
+      "role": "daily_operations",
+      "schedule": "24/7",
+      "tasks": [
+        "Paper trading server",
+        "Real-time inference",
+        "Data collection (sau 15h)",
+        "Model evaluation",
+        "Quick validation (3-5 stocks)"
+      ],
+      "config": {
+        "batch_size": 4,
+        "epochs": 50,
+        "torch_threads": 16
+      }
+    }
+  },
+
+  "daily_schedule": {
+    "08:45": "Start paper trading server",
+    "09:00": "Market opens - Begin scanning",
+    "09:00-11:30": "Morning session trading",
+    "11:30-13:00": "Lunch break",
+    "13:00-14:45": "Afternoon session",
+    "15:00": "Market closes",
+    "15:30": "Download new data from CafeF",
+    "16:00": "Run model evaluation",
+    "18:00": "Generate daily report"
+  },
+
+  "weekend_schedule": {
+    "saturday": {
+      "09:00": "Sync latest data to Home PC",
+      "10:00": "Start full training on 5070Ti",
+      "22:00": "Training complete (~12h)"
+    },
+    "sunday": {
+      "09:00": "Validate trained models",
+      "10:00": "Sync models back to Host",
+      "11:00": "Run backtests",
+      "14:00": "Deploy to production"
+    }
+  },
+
+  "sync_method": {
+    "recommended": "Google Drive / OneDrive",
+    "paths": {
+      "data": "data/historical/*.parquet",
+      "models": "models/*_stockformer_simple_best.pt",
+      "config": "config/*.json"
+    }
+  }
+}

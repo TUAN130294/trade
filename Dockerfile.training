@@ -1,0 +1,53 @@
+# ===========================================
+# VN-QUANT Training Service - Docker Image
+# ===========================================
+
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    make \
+    libpq-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements files
+COPY requirements.txt ./
+
+# Install Python dependencies
+# Note: CPU torch is sufficient for training (GPU optional)
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir \
+    apscheduler \
+    pytz \
+    aiohttp \
+    aiosmtplib && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Create models and logs directories
+RUN mkdir -p models/stockformer logs
+
+# Training-specific configuration
+# Default: 2 AM Sunday
+ENV TRAINING_SCHEDULE="0 2 * * 0"
+ENV TIMEZONE="Asia/Ho_Chi_Minh"
+ENV ENABLE_NOTIFICATIONS="false"
+
+# Health check (optional)
+HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
+    CMD python -c "import os; print('OK')" || exit 1
+
+# Run training scheduler
+CMD ["python", "train_scheduler.py", "schedule"]

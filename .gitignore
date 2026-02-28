@@ -1,0 +1,84 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+nul
+
+# Data
+data/historical/*.parquet
+data/cache/
+*.db
+*.sqlite
+
+# Models
+models/*.pkl
+models/*.h5
+models/*.pt
+
+# Archives (organized old files)
+docs/archive/
+archive/
+
+# Temporary
+*.tmp
+*.bak
+temp/
+
+# Node modules (for vn-quant-web)
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Brain Data
+.brain/
+
+# IDE / Continue
+.continue/
+.agent/
+.claude/
+
+# Generated/Large files
+repomix-output.xml
+
+# Codex
+.codex-review/
+.codex-tmp-test/

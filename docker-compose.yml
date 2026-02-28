@@ -1,0 +1,175 @@
+version: '3.8'
+
+services:
+  # Main Frontend Dashboard (Nginx)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: vnquant-frontend
+    ports:
+      - "5177:80"  # Changed from 5176 to avoid conflict with erablue
+    networks:
+      - vn-quant-network
+    depends_on:
+      - autonomous
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: vnquant-postgres
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+    environment:
+      POSTGRES_DB: vnquant
+      POSTGRES_USER: vnquant
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    networks:
+      - vn-quant-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vnquant"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: vnquant-redis
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+    command: redis-server --requirepass ${REDIS_PASSWORD:-changeme} --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6380:6379"
+    networks:
+      - vn-quant-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Autonomous Trading System (Main)
+  # NOTE: Using port 8002 externally to avoid conflict with local dev (port 8001)
+  autonomous:
+    build: .
+    container_name: vnquant-autonomous
+    command: python run_autonomous_paper_trading.py
+    ports:
+      - "8002:8001"  # External:Internal - access via localhost:8002
+    # Resource limits to prevent killing other containers
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+        reservations:
+          memory: 2G
+          cpus: '1'
+    environment:
+      - ENVIRONMENT=production
+      - LOADING_MODE=DB
+      - DATABASE_URL=postgresql://vnquant:${POSTGRES_PASSWORD:-changeme}@postgres:5432/vnquant
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TRADING_MODE=${TRADING_MODE:-paper}
+      - ALLOW_REAL_TRADING=${ALLOW_REAL_TRADING:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - TRADING_PORT=8001
+      - PYTHONPATH=/app
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./.env:/app/.env
+    networks:
+      - vn-quant-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Backend API - DISABLED (all features consolidated into main frontend)
+  # api:
+  #   build: .
+  #   container_name: vnquant-api
+  #   command: python start_backend_api.py
+  #   ports:
+  #     - "8003:8003"
+  #   ... (commented out - not needed)
+
+  # Weekly Model Training Service
+  model-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.training
+    container_name: vnquant-trainer
+    command: python train_scheduler.py schedule
+    # Resource limits for training (can use more during training windows)
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+          cpus: '4'
+        reservations:
+          memory: 2G
+          cpus: '1'
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://vnquant:${POSTGRES_PASSWORD:-changeme}@postgres:5432/vnquant
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+      - PYTHONPATH=/app
+      - TRAINING_SCHEDULE=${TRAINING_SCHEDULE:-0 2 * * 0}
+      - TIMEZONE=${TIMEZONE:-Asia/Ho_Chi_Minh}
+      - ENABLE_NOTIFICATIONS=${ENABLE_NOTIFICATIONS:-false}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+      - EMAIL_RECIPIENTS=${EMAIL_RECIPIENTS:-}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    networks:
+      - vn-quant-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    # Disable interactive terminal for background service
+    stdin_open: false
+    tty: false
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  vn-quant-network:
+    driver: bridge
